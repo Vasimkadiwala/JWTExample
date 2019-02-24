@@ -3,16 +3,16 @@ package com.vk.jwt.example.model;
 public class SymAuthDetails {
 	
 	
-	private char[] clientId;
+	private char[] clientSecret;
 
-	public char[] getClientId() {
-		return clientId;
+	public char[] getClientSecret() {
+		return clientSecret;
 	}
 
-	public void setClientId(char[] clientId) {
-		this.clientId = clientId;
+	public void setClientSecret(char[] clientSecret) {
+		this.clientSecret = clientSecret;
 	}
-	
+
 	
 
 }

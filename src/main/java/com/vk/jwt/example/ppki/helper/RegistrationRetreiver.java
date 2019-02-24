@@ -15,7 +15,7 @@ public class RegistrationRetreiver {
 		 */
 		JwtRegistration jwtRegistration=mockDBServicePPKI(token.getPayload().getIss());
 		
-		if(requestReceivedTime-token.getPayload().getExp() > jwtRegistration.getExpDiffinSeconds()) {
+		if((requestReceivedTime-token.getPayload().getExp()) > jwtRegistration.getExpDiffinSeconds()) {
 			throw new UnauthorizedException("Request expired");
 		}
 		
@@ -33,7 +33,7 @@ public class RegistrationRetreiver {
 		
 		JwtRegistration reg=new JwtRegistration();
 		
-		reg.setExpDiffinSeconds(200000);
+		reg.setExpDiffinSeconds(20);
 		reg.setKeyDetails(keyDetails);
 		
 		
