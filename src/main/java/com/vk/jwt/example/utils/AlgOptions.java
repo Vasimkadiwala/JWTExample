@@ -4,6 +4,6 @@ public enum AlgOptions {
 
 	RS256,
 	HS256,
-	H512;
+	HS512;
 	
 }

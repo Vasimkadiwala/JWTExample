@@ -4,6 +4,7 @@ import com.vk.jwt.example.exception.UnauthorizedException;
 import com.vk.jwt.example.model.JwtRegistration;
 import com.vk.jwt.example.model.JwtToken;
 import com.vk.jwt.example.model.KeyDetails;
+import com.vk.jwt.example.model.SymAuthDetails;
 
 public class RegistrationRetreiver {
 	
@@ -24,6 +25,19 @@ public class RegistrationRetreiver {
 	
 	
 	private JwtRegistration mockDBServicePPKI(String clientId) {
+		
+		
+		if(clientId.contains("Symm")) {
+			
+			SymAuthDetails sym=new SymAuthDetails();
+			sym.setClientSecret("testClientSecret".toCharArray());
+			
+			JwtRegistration reg=new JwtRegistration();
+			
+			reg.setExpDiffinSeconds(2000);
+			reg.setSymAuthDteails(sym);
+			return reg;
+		}
 		
 		KeyDetails keyDetails=new KeyDetails();
 		keyDetails.setAlias("testkey");

@@ -71,13 +71,14 @@ public class SignatureVerifier {
 
 	}
 
-	private boolean verifySignature(JwtToken token, SymAuthDetails authDetails)
+	// This should be private
+	public boolean verifySignature(JwtToken token, SymAuthDetails authDetails)
 			throws SignatureException, UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
 
 		SecretKeySpec secretKeySpec = new SecretKeySpec(
 				new String(authDetails.getClientSecret()).getBytes(StandardCharsets.UTF_8),
 				getALgForSym(token.getHeader().getAlg()));
-		Mac mac = Mac.getInstance(HMAC_SHA512);
+		Mac mac = Mac.getInstance(getALgForSym(token.getHeader().getAlg()));
 		mac.init(secretKeySpec);
 		String computedSignautre = toHexString(mac.doFinal((token.getEncodedHeader() + "." + token.getEncodedPayload()).getBytes(StandardCharsets.UTF_8)));
 		String receivedSignature = toHexString(decoder.decode(token.getEncodedSignature()));
